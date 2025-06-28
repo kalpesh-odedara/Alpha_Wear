@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Threads - Order Page</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #34495e;
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        /* Products Section */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .product-price {
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+            flex-grow: 1;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-secondary {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #bdc3c7;
+        }
+        
+        /* Cart Section */
+        .cart {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 20px;
+        }
+        
+        .cart-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-items {
+            margin-bottom: 20px;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-info {
+            flex-grow: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: #e74c3c;
+            font-size: 0.9rem;
+        }
+        
+        .cart-item-qty {
+            color: #7f8c8d;
+        }
+        
+        .cart-summary {
+            margin-top: 20px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-total {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Order Form */
+        .order-form {
+            margin-top: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .btn-checkout {
+            background-color: #27ae60;
+            color: white;
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+        
+        .btn-checkout:hover {
+            background-color: #2ecc71;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .cart {
+                margin-top: 30px;
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">Alpha Wear</div>
+            <nav>
+                <a href="index.html">Home</a>
+               
+            </nav>
+            <h5>Other Products</h5>
+        </div>
+    </header>
+    
+    <div class="container">
+          
+        <div class="main-content">
+            <section class="products">
+                <article class="product-card">
+                    <img src="image/men15.jpeg" alt="Men's T-Shirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Premium Cotton T-Shirt</h3>
+                        <p class="product-price">₹224.99</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary">Add to Cart</button>
+                            
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="product-card">
+                    <img src="image/women19.jpeg" alt="Women's Dress" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Elegant Summer Dress</h3>
+                        <p class="product-price">₹449.99</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary">Add to Cart</button>
+                           
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="product-card">
+                    <img src="image/men7.jpeg" alt="Denim Jeans" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Classic Denim Jeans</h3>
+                        <p class="product-price">₹239.99</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary">Add to Cart</button>
+                          
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="product-card">
+                    <img src="image/men8.jpeg" alt="Formal Shirt" class="product-image">
+
+                    <div class="product-info">
+                        <h3 class="product-title">Formal Business Shirt</h3>
+                        <p class="product-price">₹534.99</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary">Add to Cart</button>
+                           
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="product-card">
+                    <img src="image/men10.jpeg" alt="Winter Coat" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Warm Winter Coat</h3>
+                        <p class="product-price">₹289.99</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary">Add to Cart</button>
+                            
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="product-card">
+                    <img src="image/men12.jpeg" alt="Casual Skirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Casual A-line Skirt</h3>
+                        <p class="product-price">₹229.99</p>
+                        <div class="product-actions">
+                            <button class="btn btn-primary">Add to Cart</button>
+                          
+                    </div>
+                </article>
+            </section>
+            
+            <aside class="cart">
+                <h2 class="cart-title">Your Cart</h2>
+                
+                <div class="cart-items">
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">Premium Cotton T-Shirt</div>
+                            <div class="cart-item-price">₹324.99 × 1</div>
+                        </div>
+                        <div class="cart-item-qty">₹324.99</div>
+                    </div>
+                    
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">Classic Denim Jeans</div>
+                            <div class="cart-item-price">₹239.99 × 1</div>
+                        </div>
+                        <div class="cart-item-qty">₹239.99</div>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>₹00.00/-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span>₹00,00/-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax:</span>
+                        <span>₹00.00/-</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total:</span>
+                        <span>00.00/-</span>
+                    </div>
+                </div>
+                
+                <form class="order-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Shipping Address</label>
+                        <textarea id="address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment">Payment Method</label>
+                        <select id="payment" required>
+                            <option value="">Select payment method</option>
+                            <option value="credit">Credit Card</option>
+                            <option value="paypal">PayPal</option>
+                            <option value="bank">Bank Transfer</option>
+                        </select>
+                    </div>
+                    <button type="submit"class="btn btn-checkout" onclick="myFunction()" ><a href="index.html">To Checkout</a></button>
+                    <script>
+                    function myFunction(){
+                     alert("your Service  is conformed");
+                  }
+    </script>
+                </form>
+            </aside>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Fashion Threads. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
